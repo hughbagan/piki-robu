@@ -3,23 +3,22 @@ extends KinematicBody
 onready var anim_player = $AnimationPlayer
 onready var raycast = $RayCast
 onready var reload_timer = $ReloadTimer
-onready var ammo_label = $CanvasLayer/AmmoLabel
-onready var ammo_label_timer = $AmmoLabelTimer
+onready var score_label = $CanvasLayer/ScoreLabel
+onready var score_label_timer = $ScoreLabelTimer
 onready var colour_sprites = $CanvasLayer/Control/ColourSprites
 onready var camera = $Camera
 onready var hands = $Hands
 onready var riffs = [
-	$Riff1,
+#	$Riff1,
 	$Riff2,
 	$Riff3
 ]
 
-var BallScene = preload("res://src/Ball.tscn")
-var world = null
-
 const MOVE_SPEED = 7
 const MOUSE_SENS = 0.3
 
+var BallScene = preload("res://src/Ball.tscn")
+var world = null
 var ammo = 6
 var reload = 0
 var colour = 0
@@ -31,9 +30,9 @@ func _ready():
 	yield(get_tree(), "idle_frame") # wait one frame
 	get_tree().call_group("zombies", "set_player", self)
 	Globals.player = self
-	ammo_label.text = "piki robu"
-	ammo_label.set_margins_preset(ammo_label.PRESET_CENTER)
-	ammo_label.show()
+	score_label.text = "piki robu"
+	score_label.set_margins_preset(score_label.PRESET_CENTER)
+	score_label.show()
 	PauseManager.player = self
 	PauseManager.pause()
 
@@ -91,44 +90,12 @@ func _physics_process(delta):
 		get_parent().add_child(ball)
 
 		if !start:
-			ammo_label.hide()
+			score_label.hide()
 			$CanvasLayer/Control.show()
 			start = true
 
-		#var col = raycast.get_collider()
-		#if raycast.is_colliding() and col.has_method("kill"):
-		#	col.kill()
 		reload_timer.start()
 		$ThrowSound.play()
-
-	if ammo < 6:
-		if Input.is_action_just_pressed("reload_1") and reload==0:
-			reload = 1
-			anim_player.stop()
-			anim_player.play("reload", -1, 0.0)
-			print("reload 1")
-		if Input.is_action_just_pressed("reload_2") and reload==1:
-			reload = 2
-			anim_player.seek(0.1)
-			print("reload 2")
-		if Input.is_action_just_pressed("reload_3") and reload==2:
-			ammo += 1
-			reload = 0
-			anim_player.seek(0.2)
-			ammo_label.text = str(ammo)
-			ammo_label.show()
-			ammo_label_timer.start()
-			print("ammo", ammo)
-
-	# "peek" function-- show how much ammo you have
-	# Might defeat the purpose of the game though?
-	# (To remember how much ammo you have in your head)
-	# Maybe make it take up time and screen space,
-	# so it's naturally just better to count rounds in your head.
-#	if Input.is_action_just_pressed("peek_ammo"):
-#		ammo_label.text = str(ammo)
-#		ammo_label.show()
-#		ammo_label_timer.start()
 
 func kill():
 	if not dead:
@@ -138,9 +105,9 @@ func kill():
 		world.endgame()
 
 func show_score():
-	ammo_label.text = str(Globals.score)
-	ammo_label.set_margins_preset(ammo_label.PRESET_CENTER)
-	ammo_label.show()
+	score_label.text = str(Globals.score)
+	score_label.set_margins_preset(score_label.PRESET_CENTER)
+	score_label.show()
 	var playing = false
 	for riff in riffs:
 		if riff.is_playing():
@@ -154,7 +121,7 @@ func _on_ReloadTimer_timeout():
 #	print("ready")
 
 func _on_AmmoLabelTimer_timeout():
-	ammo_label.hide()
+	score_label.hide()
 
 func _on_Zombie_died():
 	pass

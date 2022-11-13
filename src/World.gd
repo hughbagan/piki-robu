@@ -31,6 +31,7 @@ func endgame():
 	if Globals.score < 0:
 		Globals.score = 0
 	print(Globals.score)
+	player.show_score()
 
 	var TWEEN_TIME = 5.0
 	translation_tween.interpolate_property(
@@ -63,13 +64,12 @@ func endgame():
 
 func _on_TranslationTween_tween_completed(object, key):
 	#PauseManager.pause()
-	player.show_score()
 	done = true
 	print(skycam.translation)
 	print(skycam.transform)
 	print(skycam.rotation_degrees)
 
 func _input(event):
-	if event is InputEventKey and done:
+	if (event is InputEventKey or event is InputEventMouseButton) and done:
 		if event.pressed:
 			get_tree().reload_current_scene()

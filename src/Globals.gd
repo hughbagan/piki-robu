@@ -20,4 +20,4 @@ func inc_score(num):
 	self.score += num
 	if (self.score % 5000) == 0 and player:
 		player.show_score()
-		player.ammo_label_timer.start(1.0)
+		player.score_label_timer.start()

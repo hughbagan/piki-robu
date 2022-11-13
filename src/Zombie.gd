@@ -98,10 +98,8 @@ func _on_PathTimer_timeout():
 		path.append(Vector3(point.x, translation.y, point.z))
 
 func _on_DieTimer_timeout():
-	#anim_player.play_backwards("die")
 	var plant = PlantScene.instance()
 	plant.translation = Vector3(self.translation.x, plant.translation.y, self.translation.z)
-	#plant.translation.y = 1.2
 	if colour:
 		plant.colour = colour
 		plant.get_node("AnimatedSprite3D").frame = colour
@@ -113,7 +111,4 @@ func _on_DieTimer_timeout():
 
 func _on_ChatterTimer_timeout():
 	var i = randi() % chatters.size()
-	print(i)
 	chatters[i].play()
-#	var chatter_sound = chatters[randi() % chatters.size()]
-#	chatter_sound.play()

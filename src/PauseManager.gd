@@ -17,7 +17,7 @@ func _process(delta):
 	if player:
 		x += 0.01
 		#print(abs(sin(x)))
-		player.ammo_label.set_modulate(Color(abs(sin(x)), abs(cos(x)), abs(tan(x)), 1.0))
+		player.score_label.set_modulate(Color(abs(sin(x)), abs(cos(x)), abs(tan(x)), 1.0))
 	if Input.is_action_just_pressed("exit"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			pause()

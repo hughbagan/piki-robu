@@ -181,7 +181,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AmmoLabel" type="Label" parent="CanvasLayer"]
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -194,14 +194,13 @@ theme = SubResource( 7 )
 text = "6"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="AmmoLabelTimer" type="Timer" parent="."]
+[node name="ScoreLabelTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [node name="Hands" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
@@ -231,4 +230,4 @@ stream = ExtResource( 14 )
 volume_db = -10.0
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
-[connection signal="timeout" from="AmmoLabelTimer" to="." method="_on_AmmoLabelTimer_timeout"]
+[connection signal="timeout" from="ScoreLabelTimer" to="." method="_on_AmmoLabelTimer_timeout"]
