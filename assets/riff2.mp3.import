@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/riff2.mp3-c01d82cc2ba149bd54b8b2184c4c5143.mp3str"
+
+[deps]
+
+source_file="res://assets/riff2.mp3"
+dest_files=[ "res://.import/riff2.mp3-c01d82cc2ba149bd54b8b2184c4c5143.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

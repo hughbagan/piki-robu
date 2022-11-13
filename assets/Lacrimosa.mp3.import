@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lacrimosa.mp3-aa3745e9f25aa26b8ed22cae625ad309.mp3str"
+
+[deps]
+
+source_file="res://assets/Lacrimosa.mp3"
+dest_files=[ "res://.import/Lacrimosa.mp3-aa3745e9f25aa26b8ed22cae625ad309.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

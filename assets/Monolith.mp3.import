@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Monolith.mp3-8f9c7d88314236227084b3e49b9e1640.mp3str"
+
+[deps]
+
+source_file="res://assets/Monolith.mp3"
+dest_files=[ "res://.import/Monolith.mp3-8f9c7d88314236227084b3e49b9e1640.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

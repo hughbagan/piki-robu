@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tri-Tachyon - 4HR.DM8_.mp3-1971f11733d4045b430cceae215f9dda.mp3str"
+
+[deps]
+
+source_file="res://assets/Tri-Tachyon - 4HR.DM8_.mp3"
+dest_files=[ "res://.import/Tri-Tachyon - 4HR.DM8_.mp3-1971f11733d4045b430cceae215f9dda.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

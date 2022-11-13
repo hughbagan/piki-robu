@@ -1,0 +1,234 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://assets/shoot.png" type="Texture" id=1]
+[ext_resource path="res://assets/reticle.png" type="Texture" id=2]
+[ext_resource path="res://src/Player.gd" type="Script" id=3]
+[ext_resource path="res://assets/dpcomic-crowned/dpcomic-crowned.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/red.png" type="Texture" id=5]
+[ext_resource path="res://assets/orange.png" type="Texture" id=6]
+[ext_resource path="res://assets/green.png" type="Texture" id=7]
+[ext_resource path="res://assets/yellow.png" type="Texture" id=8]
+[ext_resource path="res://assets/purple.png" type="Texture" id=9]
+[ext_resource path="res://assets/blue.png" type="Texture" id=10]
+[ext_resource path="res://assets/pink.png" type="Texture" id=11]
+[ext_resource path="res://assets/walk.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/throw.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/riff3.mp3" type="AudioStream" id=14]
+[ext_resource path="res://assets/riff2.mp3" type="AudioStream" id=15]
+[ext_resource path="res://assets/riff1.mp3" type="AudioStream" id=16]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.75
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CanvasLayer/Control/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CanvasLayer/Control/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "reload"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CanvasLayer/Control/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 2, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("../CanvasLayer/Control/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0 ]
+}
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://assets/dpcomic-crowned/dpcomic-crowned.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+font_data = SubResource( 9 )
+
+[sub_resource type="Theme" id=11]
+default_font = SubResource( 10 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 200
+font_data = ExtResource( 4 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
+
+[node name="Player" type="KinematicBody"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="RayCast" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0, -2000 )
+
+[node name="Camera" type="Camera" parent="."]
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape")
+anims/RESET = SubResource( 2 )
+anims/idle = SubResource( 4 )
+anims/reload = SubResource( 5 )
+anims/shoot = SubResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Control"]
+visible = false
+position = Vector2( 250, -256 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 1
+
+[node name="ColourSprites" type="AnimatedSprite" parent="CanvasLayer/Control"]
+position = Vector2( 0, -140 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 8 )
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+margin_left = -220.0
+margin_top = -168.0
+margin_right = -59.0
+margin_bottom = -59.0
+theme = SubResource( 11 )
+text = "< Q"
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+margin_left = 129.0
+margin_top = -166.0
+margin_right = 290.0
+margin_bottom = -57.0
+theme = SubResource( 11 )
+text = "E >"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -108.0
+margin_top = -216.0
+margin_right = 108.0
+margin_bottom = 216.0
+theme = SubResource( 7 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="AmmoLabelTimer" type="Timer" parent="."]
+
+[node name="Hands" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5 )
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -30.0
+
+[node name="WalkSoundTimer" type="Timer" parent="."]
+wait_time = 0.33
+one_shot = true
+
+[node name="ThrowSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
+
+[node name="Riff1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -10.0
+
+[node name="Riff2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+
+[node name="Riff3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="AmmoLabelTimer" to="." method="_on_AmmoLabelTimer_timeout"]

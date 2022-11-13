@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/3HR.MT_.3.mp3-489551addd08fa0a641e2c87aa572d0f.mp3str"
+
+[deps]
+
+source_file="res://assets/3HR.MT_.3.mp3"
+dest_files=[ "res://.import/3HR.MT_.3.mp3-489551addd08fa0a641e2c87aa572d0f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
