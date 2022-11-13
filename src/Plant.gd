@@ -3,6 +3,7 @@ extends Area
 var colour
 
 func _ready():
+	assert(self.colour)
 	self.add_to_group("plants")
 	$AnimatedSprite3D.scale = Vector3(1, 0, 1)
 	$Tween.interpolate_property(

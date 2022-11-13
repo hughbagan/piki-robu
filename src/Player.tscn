@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/shoot.png" type="Texture" id=1]
 [ext_resource path="res://assets/reticle.png" type="Texture" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://assets/riff3.mp3" type="AudioStream" id=14]
 [ext_resource path="res://assets/riff2.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/riff1.mp3" type="AudioStream" id=16]
+[ext_resource path="res://assets/sfx/powerUp3.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/sfx/powerUp2.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/sfx/powerUp.wav" type="AudioStream" id=19]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -168,7 +171,7 @@ margin_bottom = -57.0
 theme = SubResource( 11 )
 text = "E >"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="Reticle" type="TextureRect" parent="CanvasLayer"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -177,9 +180,6 @@ anchor_bottom = 0.5
 margin_left = -16.0
 margin_top = -16.0
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
@@ -227,6 +227,18 @@ volume_db = -10.0
 
 [node name="Riff3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+volume_db = -10.0
+
+[node name="Riff4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -10.0
+
+[node name="Riff5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -10.0
+
+[node name="Riff6" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
 volume_db = -10.0
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

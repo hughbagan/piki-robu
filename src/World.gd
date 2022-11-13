@@ -22,8 +22,11 @@ func _ready():
 func endgame():
 	# Total score
 	var plants = get_tree().get_nodes_in_group("plants")
+	print(plants)
 	var colours = []
 	for p in plants:
+		print(p.colour)
+		print(not p.colour in colours)
 		if (not p.colour in colours) and p.colour != null:
 			colours.append(p.colour)
 	print("colours ", colours)
@@ -31,7 +34,8 @@ func endgame():
 	if Globals.score < 0:
 		Globals.score = 0
 	print(Globals.score)
-	player.show_score()
+	player.score_label_timer.stop()
+	player.show_score(Globals.score)
 
 	var TWEEN_TIME = 5.0
 	translation_tween.interpolate_property(
@@ -63,11 +67,7 @@ func endgame():
 	rotation_tween.start()
 
 func _on_TranslationTween_tween_completed(object, key):
-	#PauseManager.pause()
 	done = true
-	print(skycam.translation)
-	print(skycam.transform)
-	print(skycam.rotation_degrees)
 
 func _input(event):
 	if (event is InputEventKey or event is InputEventMouseButton) and done:

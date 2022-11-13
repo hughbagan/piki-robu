@@ -1,6 +1,6 @@
 extends RigidBody
 
-var colour
+var colour = null
 
 func _on_Ball_body_entered(body):
 	print("COLLIDE", body.name)

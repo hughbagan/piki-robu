@@ -33,6 +33,7 @@ extents = Vector3( 1, 0.1, 1 )
 
 [node name="Wall" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -52,6 +53,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
 shape = SubResource( 16 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
+visible = false
 mesh = SubResource( 17 )
 material/0 = SubResource( 18 )
 

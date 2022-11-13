@@ -1,7 +1,5 @@
 extends KinematicBody
 
-const MOVE_SPEED = 5.0
-
 onready var raycast = $RayCast
 onready var anim_player = $AnimationPlayer
 onready var path_timer = $PathTimer
@@ -20,7 +18,8 @@ onready var chatters = [
 	chatter5
 ]
 
-var PlantScene = preload("res://src/Plant.tscn")
+const Plant = preload("res://src/Plant.tscn")
+const MOVE_SPEED = 5.0
 
 var player = null
 var navigation = null
@@ -98,11 +97,12 @@ func _on_PathTimer_timeout():
 		path.append(Vector3(point.x, translation.y, point.z))
 
 func _on_DieTimer_timeout():
-	var plant = PlantScene.instance()
+	var plant = Plant.instance()
 	plant.translation = Vector3(self.translation.x, plant.translation.y, self.translation.z)
 	if colour:
 		plant.colour = colour
-		plant.get_node("AnimatedSprite3D").frame = colour
+		assert(plant.colour)
+		plant.get_node("AnimatedSprite3D").frame = plant.colour
 	if randf() > 0.5:
 		plant.get_node("AnimatedSprite3D").flip_h = true
 	world.add_child(plant)

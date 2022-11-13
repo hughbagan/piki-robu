@@ -27,7 +27,7 @@ func set_navigation(n):
 
 func _on_BatchTimer_timeout():
 	# Start spawning a batch of enemies
-	print("begin batch")
+#	print("begin batch")
 	batch_count = 0
 	spawn_timer.start(spawn_timer_time)
 
@@ -42,7 +42,7 @@ func _on_SpawnTimer_timeout():
 		new_enemy.set_world(world)
 	assert(world)
 	world.add_child(new_enemy)
-	print("Spawned ", new_enemy)
+#	print("Spawned ", new_enemy)
 	batch_count += 1
 	if batch_count < batch_size:
 		spawn_timer.start(spawn_timer_time)

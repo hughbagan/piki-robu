@@ -9,9 +9,12 @@ onready var colour_sprites = $CanvasLayer/Control/ColourSprites
 onready var camera = $Camera
 onready var hands = $Hands
 onready var riffs = [
-#	$Riff1,
-	$Riff2,
-	$Riff3
+#	$Riff1, # heavy metal
+#	$Riff2, # heavy metal
+#	$Riff3, # heavy metal
+	$Riff4,
+	$Riff5,
+	$Riff6
 ]
 
 const MOVE_SPEED = 7
@@ -104,8 +107,8 @@ func kill():
 		$CanvasLayer/Control.hide()
 		world.endgame()
 
-func show_score():
-	score_label.text = str(Globals.score)
+func show_score(score):
+	score_label.text = str(score)
 	score_label.set_margins_preset(score_label.PRESET_CENTER)
 	score_label.show()
 	var playing = false
