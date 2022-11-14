@@ -84,10 +84,9 @@ func _physics_process(delta):
 		anim_player.stop()
 		anim_player.play("shoot")
 
-		var ball = BallScene.instance()
-		ball.colour = self.colour
+		var ball = BallScene.instance().setup(self.colour)
 		ball.get_node("Sprite3D").texture = \
-			colour_sprites.frames.get_frame("default", colour)
+			colour_sprites.frames.get_frame("default", self.colour)
 		ball.set_global_transform(hands.global_transform)
 		ball.apply_central_impulse(hands.global_transform.basis.z * 30 * -1)
 		get_parent().add_child(ball)

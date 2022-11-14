@@ -97,17 +97,13 @@ func _on_PathTimer_timeout():
 		path.append(Vector3(point.x, translation.y, point.z))
 
 func _on_DieTimer_timeout():
-	var plant = Plant.instance()
+	assert(self.colour != null)
+	var plant = Plant.instance().setup(self.colour)
 	plant.translation = Vector3(self.translation.x, plant.translation.y, self.translation.z)
-	if colour:
-		plant.colour = colour
-		assert(plant.colour)
-		plant.get_node("AnimatedSprite3D").frame = plant.colour
 	if randf() > 0.5:
 		plant.get_node("AnimatedSprite3D").flip_h = true
 	world.add_child(plant)
 	self.hide()
-
 
 func _on_ChatterTimer_timeout():
 	var i = randi() % chatters.size()

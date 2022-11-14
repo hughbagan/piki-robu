@@ -1,9 +1,16 @@
 extends Area
 
-var colour
+onready var sprite = $AnimatedSprite3D
+
+var colour = null
+
+func setup(_colour): # Note: not a real constructor or _init(). It's fake.
+	self.colour = _colour
+	return self
 
 func _ready():
-	assert(self.colour)
+	assert(self.colour != null)
+	sprite.frame = self.colour
 	self.add_to_group("plants")
 	$AnimatedSprite3D.scale = Vector3(1, 0, 1)
 	$Tween.interpolate_property(
