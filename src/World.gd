@@ -30,12 +30,15 @@ func endgame():
 		if (not p.colour in colours) and p.colour != null:
 			colours.append(p.colour)
 	print("colours ", colours)
-	Globals.score *= colours.size()-1
+	Globals.score *= 1.0 + ((colours.size()-1)*0.1)
 	if Globals.score < 0:
 		Globals.score = 0
 	print(Globals.score)
 	player.score_label_timer.stop()
 	player.show_score(Globals.score)
+	player.score_hint_label.text = str(colours.size()) + " colours planted"
+	player.score_hint_label.set_margins_preset(player.score_hint_label.PRESET_CENTER_BOTTOM)
+	player.score_hint_label.show()
 
 	var TWEEN_TIME = 5.0
 	translation_tween.interpolate_property(

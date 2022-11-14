@@ -5,6 +5,7 @@ onready var raycast = $RayCast
 onready var reload_timer = $ReloadTimer
 onready var score_label = $CanvasLayer/ScoreLabel
 onready var score_label_timer = $ScoreLabelTimer
+onready var score_hint_label = $CanvasLayer/ScoreHint
 onready var colour_sprites = $CanvasLayer/Control/ColourSprites
 onready var camera = $Camera
 onready var hands = $Hands
